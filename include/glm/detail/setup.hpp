@@ -672,7 +672,9 @@
 #endif
 
 // Not standard
-#define GLM_HAS_ANONYMOUS_UNION (GLM_LANG & GLM_LANG_CXXMS_FLAG)
+// ANURAG added this line to work around alignment error (as according to https://github.com/g-truc/glm/issues/316)
+// #define GLM_HAS_ANONYMOUS_UNION (GLM_LANG & GLM_LANG_CXXMS_FLAG)
+#define GLM_HAS_ANONYMOUS_UNION (GLM_LANG & GLM_LANG_CXXMS_FLAG) && !(GLM_COMPILER & GLM_COMPILER_VC)
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Platform 
