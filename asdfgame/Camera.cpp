@@ -1,3 +1,5 @@
+#define DEBUG_CENTER 0
+
 #include <iostream>
 
 #include "Camera.h"
@@ -60,25 +62,37 @@ void Camera::updateCameraMovement(GLFWwindow *window, double prevTime) {
 	glm::vec3 lookIn = getLookAt() - getCenter();
 	glm::vec3 forward = glm::vec3(lookIn.x, 0, lookIn.z);
 
+	bool moved = false;
+
 	// Move forward
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
 		position += forward * deltaTime * moveSpeed;
+		moved = true;
 	}
 	// Move backward
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS){
 		position -= forward * deltaTime * moveSpeed;
+		moved = true;
 	}
 	// Strafe right
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS){
 		position += getRight() * deltaTime * moveSpeed;
+		moved = true;
 	}
 	// Strafe left
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS){
 		position -= getRight() * deltaTime * moveSpeed;
+		moved = true;
 	}
 
 	setCenter(position);
 	setLookAt(getCenter() + lookIn);
+
+	if (DEBUG_CENTER) {
+		if (moved) {
+			printf("%s\n", glm::to_string(getCenter()).c_str());
+		}
+	}
 }
 
 void Camera::updateViewMatrix() {
