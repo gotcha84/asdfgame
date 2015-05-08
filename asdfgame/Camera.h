@@ -20,10 +20,10 @@ class Camera {
 
 		glm::mat4 m_viewMatrix;
 		
-		float horizontalAngle;
-		float verticalAngle;
-		float moveSpeed;
-		float mouseSpeed;
+		float m_horizontalAngle;
+		float m_verticalAngle;
+		float m_moveSpeed;
+		float m_mouseSpeed;
 
 	public:
 		Camera();

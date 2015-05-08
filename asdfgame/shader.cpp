@@ -7,7 +7,7 @@
 #include "Shader.h"
 
 
-GLuint loadShaders(const char * vertex_file_path,const char * fragment_file_path){
+GLuint Shader::loadShaders(const char * vertex_file_path,const char * fragment_file_path){
 
 	// Create the shaders
 	GLuint vertexShaderID = glCreateShader(GL_VERTEX_SHADER);

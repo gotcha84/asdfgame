@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Camera.h"
+#include "Constants.h"
 
 Camera::Camera() {
 	setCenter(glm::vec3(0, 0, 5));
@@ -11,11 +12,11 @@ Camera::Camera() {
 	setUp(glm::vec3(0, 1, 0));
 	setRight(glm::vec3(1, 0, 0));
 
-	moveSpeed = 3.0f; // 3 units/sec
-	mouseSpeed = 0.0005f;
+	m_moveSpeed = 3.0f; // 3 units/sec
+	m_mouseSpeed = 0.0005f;
 
-	horizontalAngle = 0;
-	verticalAngle = 0;
+	m_horizontalAngle = 0;
+	m_verticalAngle = 0;
 
 	updateViewMatrix();
 }
@@ -38,17 +39,17 @@ void Camera::updateCameraRotation(GLFWwindow *window) {
 	glfwGetWindowSize(window, &windowWidth, &windowHeight); // get current window size
 	glfwSetCursorPos(window, windowWidth / 2, windowHeight / 2); // reset mouse position
 
-	horizontalAngle += float(windowWidth / 2 - xPos) * mouseSpeed;
-	verticalAngle += float(windowHeight / 2 - yPos) * mouseSpeed;
+	m_horizontalAngle += float(windowWidth / 2 - xPos) * m_mouseSpeed;
+	m_verticalAngle += float(windowHeight / 2 - yPos) * m_mouseSpeed;
 
 	glm::vec3 oldLookIn = getLookAt() - getCenter();
-	glm::vec3 lookInHorizontal = glm::vec3(sin(horizontalAngle), oldLookIn.y, cos(horizontalAngle));
-	glm::vec3 lookInVertical = glm::vec3(oldLookIn.x * cos(verticalAngle), sin(verticalAngle), oldLookIn.z * cos(verticalAngle));
+	glm::vec3 lookInHorizontal = glm::vec3(sin(m_horizontalAngle), oldLookIn.y, cos(m_horizontalAngle));
+	glm::vec3 lookInVertical = glm::vec3(oldLookIn.x * cos(m_verticalAngle), sin(m_verticalAngle), oldLookIn.z * cos(m_verticalAngle));
 	glm::vec3 newLookIn = glm::normalize(lookInHorizontal + lookInVertical);
 	
 	setLookAt(getCenter() + newLookIn);
 
-	float rightHorizontalAngle = horizontalAngle - 3.14f / 2.0f;
+	float rightHorizontalAngle = m_horizontalAngle - PI / 2.0f;
 	setRight(glm::vec3(sin(rightHorizontalAngle), getRight().y, cos(rightHorizontalAngle)));
 
 	setUp(glm::normalize(glm::cross(getRight(), newLookIn)));
@@ -66,22 +67,22 @@ void Camera::updateCameraMovement(GLFWwindow *window, double prevTime) {
 
 	// Move forward
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
-		position += forward * deltaTime * moveSpeed;
+		position += forward * deltaTime * m_moveSpeed;
 		moved = true;
 	}
 	// Move backward
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS){
-		position -= forward * deltaTime * moveSpeed;
+		position -= forward * deltaTime * m_moveSpeed;
 		moved = true;
 	}
 	// Strafe right
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS){
-		position += getRight() * deltaTime * moveSpeed;
+		position += getRight() * deltaTime * m_moveSpeed;
 		moved = true;
 	}
 	// Strafe left
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS){
-		position -= getRight() * deltaTime * moveSpeed;
+		position -= getRight() * deltaTime * m_moveSpeed;
 		moved = true;
 	}
 
@@ -90,7 +91,7 @@ void Camera::updateCameraMovement(GLFWwindow *window, double prevTime) {
 
 	if (DEBUG_CENTER) {
 		if (moved) {
-			printf("%s\n", glm::to_string(getCenter()).c_str());
+			fprintf(stderr, "camera center: %s\n", glm::to_string(getCenter()).c_str());
 		}
 	}
 }

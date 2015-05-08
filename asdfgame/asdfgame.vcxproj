@@ -127,8 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AABB.cpp" />
+    <ClCompile Include="BasicGeode.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Geode.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -136,7 +140,13 @@
     <None Include="simple.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AABB.h" />
+    <ClInclude Include="BasicGeode.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Geode.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
