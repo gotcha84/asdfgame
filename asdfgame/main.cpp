@@ -1,4 +1,4 @@
-#define DEBUG_FPS 1
+#define DEBUG_FPS 0
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
 		0.0f, 1.0f, 0.0f
 	};
 
-	static unsigned int index_data[] = {
+	static int index_data[] = {
 		0, 3, 1,
 		1, 3, 2,
 		2, 3, 0,
@@ -144,7 +144,7 @@ int main(int argc, char *argv[]) {
 	node.setVertices(vertex_data, sizeof(vertex_data) / sizeof(float));
 	node.setIndices(index_data, sizeof(index_data) / sizeof(float));
 
-	Camera camera;
+	Camera camera(window);
 	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	double prevFrameTime = glfwGetTime();
@@ -165,7 +165,7 @@ int main(int argc, char *argv[]) {
 			prevTimeFPS = currTime;
 		}
 
-		camera.updateCamera(window, prevFrameTime);
+		camera.updateCamera(prevFrameTime);
 		// glm::mat4 MVP = getProjMatrix() * camera.getViewMatrix() * modelMatrix;
 
 		// TODO graphics stuff

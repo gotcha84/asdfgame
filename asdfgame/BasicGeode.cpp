@@ -6,18 +6,18 @@ namespace sg {
 
 	BasicGeode::BasicGeode(string name) : Geode(name) {
 		m_shaderProgramId = Shader::loadShaders("simple.vert", "simple.frag");
-		m_alreadyVBO = false;
-		m_alreadyIBO = false;
+		m_vboExists = false;
+		m_iboExists = false;
 	}
 
 	BasicGeode::~BasicGeode() {
 		glDeleteProgram(m_shaderProgramId);
 
-		if (m_alreadyVBO) {
+		if (m_vboExists) {
 			glDeleteBuffers(1, &m_vbo);
 		}
 
-		if (m_alreadyIBO) {
+		if (m_iboExists) {
 			glDeleteBuffers(1, &m_ibo);
 		}
 	}
@@ -50,7 +50,7 @@ namespace sg {
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
-		glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, (void *)0);
+		glDrawElements(GL_TRIANGLES, getIndices().size(), GL_UNSIGNED_INT, (void *)0);
 
 		glDisableVertexAttribArray(0);
 	}
@@ -60,7 +60,7 @@ namespace sg {
 		return m_vertices;
 	}
 
-	vector<unsigned int> BasicGeode::getIndices() {
+	vector<int> BasicGeode::getIndices() {
 		return m_indices;
 	}
 
@@ -70,7 +70,7 @@ namespace sg {
 	}
 
 	void BasicGeode::setVertices(float *vertices, int size) {
-		if (m_alreadyVBO) {
+		if (m_vboExists) {
 			glDeleteBuffers(1, &m_vbo);
 		}
 
@@ -80,23 +80,23 @@ namespace sg {
 		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 		glBufferData(GL_ARRAY_BUFFER, getVertices().size() * sizeof(float), getVertices().data(), GL_STATIC_DRAW);
 
-		m_alreadyVBO = true;
+		m_vboExists = true;
 	}
 
-	void BasicGeode::setIndices(vector<unsigned int> indices) {
+	void BasicGeode::setIndices(vector<int> indices) {
 		m_indices = indices;
 	}
 
-	void BasicGeode::setIndices(unsigned int *indices, int size) {
-		if (m_alreadyIBO) {
+	void BasicGeode::setIndices(int *indices, int size) {
+		if (m_iboExists) {
 			glDeleteBuffers(1, &m_ibo);
 		}
 
-		m_indices = vector<unsigned int>(indices, indices + size);
+		m_indices = vector<int>(indices, indices + size);
 
 		glGenBuffers(1, &m_ibo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, getIndices().size() * sizeof(unsigned int), getIndices().data(), GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, getIndices().size() * sizeof(int), getIndices().data(), GL_STATIC_DRAW);
 	}
 
 }

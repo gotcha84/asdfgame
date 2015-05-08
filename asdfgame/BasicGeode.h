@@ -14,13 +14,13 @@ namespace sg {
 			GLuint m_shaderProgramId;
 
 			vector<float> m_vertices;
-			vector<unsigned int> m_indices;
+			vector<int> m_indices;
 			
 			GLuint m_vbo;
-			bool m_alreadyVBO;
+			bool m_vboExists;
 
 			GLuint m_ibo;
-			bool m_alreadyIBO;
+			bool m_iboExists;
 
 		public:
 			BasicGeode(string name);
@@ -30,14 +30,14 @@ namespace sg {
 
 			// getters
 			vector<float> getVertices();
-			vector<unsigned int> getIndices();
+			vector<int> getIndices();
 
 			// setters
 			void setVertices(vector<float> vertices);
 			void setVertices(float *vertices, int size);
 
-			void setIndices(vector<unsigned int> indices);
-			void setIndices(unsigned int *indices, int size);
+			void setIndices(vector<int> indices);
+			void setIndices(int *indices, int size);
 	};
 }
 

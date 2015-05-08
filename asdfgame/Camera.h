@@ -10,6 +10,10 @@
 class Camera {
 
 	private:
+		// window
+		GLFWwindow *m_window;
+		int m_windowWidth, m_windowHeight;
+
 		// coordinates
 		glm::vec3 m_center;
 		glm::vec3 m_lookAt;
@@ -25,13 +29,19 @@ class Camera {
 		float m_moveSpeed;
 		float m_mouseSpeed;
 
-	public:
-		Camera();
-		~Camera();
+		// methods
+		void printDebugInfo();
+		void getWindowDimensions();
+		void centerMouse();
 
-		void updateCamera(GLFWwindow *window, double prevTime);
-		void updateCameraRotation(GLFWwindow *window);
-		void updateCameraMovement(GLFWwindow *window, double prevTime);
+	public:
+		Camera(GLFWwindow *window);
+		~Camera();
+		void initVars();
+
+		void updateCamera(double prevTime);
+		void updateCameraRotation();
+		void updateCameraMovement(double prevTime);
 		void updateViewMatrix();
 
 		// setters
