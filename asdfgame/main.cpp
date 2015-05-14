@@ -99,9 +99,9 @@ int main(int argc, char *argv[]) {
 	pyramid.setIndices(index_data, sizeof(index_data) / sizeof(index_data[0]));
 	pyramid.setColors(color_data, sizeof(color_data) / sizeof(color_data[0]));
 
-	game::Renderable node("pyr1", &pyramid);
+	game::Renderable node("pyr1", &pyramid, "simple.vert");
 
-	game::Renderable node2("pyr2", &pyramid);
+	game::Renderable node2("pyr2", &pyramid, "asdf.vert");
 	node2.setModelMatrix(glm::translate(glm::vec3(-3, 0, 0)));
 
 	Camera camera(window);

@@ -56,6 +56,9 @@
     <None Include="simple.frag">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="asdf.vert">
+      <Filter>Shader Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">

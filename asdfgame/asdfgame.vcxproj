@@ -137,6 +137,7 @@
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="asdf.vert" />
     <None Include="simple.frag" />
     <None Include="simple.vert" />
   </ItemGroup>

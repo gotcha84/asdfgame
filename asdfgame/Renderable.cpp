@@ -4,12 +4,12 @@
 
 namespace game {
 
-	Renderable::Renderable(string name, Model *model) : Object(name) {
+	Renderable::Renderable(string name, Model *model, string vertex) : Object(name) {
 		setModel(model);
 
 		setModelMatrix(glm::mat4(1.0f));
 
-		m_shaderProgramId = Shader::loadShaders("simple.vert", "simple.frag");
+		m_shaderProgramId = Shader::loadShaders(vertex.c_str(), "simple.frag");
 	}
 
 	Renderable::~Renderable() {

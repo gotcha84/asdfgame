@@ -13,7 +13,7 @@ namespace game {
 			Model *m_model;
 
 		public:
-			Renderable(string name, Model *model);
+			Renderable(string name, Model *model, string vertex);
 			~Renderable();
 
 			virtual void draw(glm::mat4 viewMatrix);
