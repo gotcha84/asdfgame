@@ -1,7 +1,7 @@
-#ifndef GAMEOBJECTS_H
-#define GAMEOBJECTS_H
+#ifndef GAME_OBJECTS_H
+#define GAME_OBJECTS_H
 
-#include "GameObject.h"
-#include "RenderableGO.h"
+#include "Object.h"
+#include "Renderable.h"
 
 #endif

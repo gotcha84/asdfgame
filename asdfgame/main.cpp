@@ -12,6 +12,7 @@
 
 #include "Shader.h"
 #include "Camera.h"
+
 #include "GameObjects.h"
 
 using namespace std;
@@ -79,13 +80,6 @@ int main(int argc, char *argv[]) {
 		0.0f, 1.0f, 0.0f		// top
 	};
 
-	static float vertex_data2[] = {
-		-4.0f, -1.0f, 0.0f,		// bottom-left
-		-3.0f, -1.0f, 1.0f,		// bottom-back
-		-2.0f, -1.0f, 0.0f,		// bottom-right
-		-3.0f, 1.0f, 0.0f		// top
-	};
-
 	static float color_data[] = {
 		1.0f, 0.0f, 0.0f,		// red
 		0.0f, 1.0f, 0.0f,		// green
@@ -100,18 +94,17 @@ int main(int argc, char *argv[]) {
 		0, 1, 2
 	};
 
-	RenderableGO node("cube1");
-	node.setVertices(vertex_data, sizeof(vertex_data) / sizeof(vertex_data[0]));
-	node.setIndices(index_data, sizeof(index_data) / sizeof(index_data[0]));
-	node.setColors(color_data, sizeof(color_data) / sizeof(color_data[0]));
+	Model pyramid("pyramid");
+	pyramid.setVertices(vertex_data, sizeof(vertex_data) / sizeof(vertex_data[0]));
+	pyramid.setIndices(index_data, sizeof(index_data) / sizeof(index_data[0]));
+	pyramid.setColors(color_data, sizeof(color_data) / sizeof(color_data[0]));
 
-	RenderableGO node2("cube2");
-	node2.setVertices(vertex_data2, sizeof(vertex_data2) / sizeof(vertex_data2[0]));
-	node2.setIndices(index_data, sizeof(index_data) / sizeof(index_data[0]));
-	node2.setColors(color_data, sizeof(color_data) / sizeof(color_data[0]));
+	game::Renderable node("pyr1", &pyramid);
+
+	game::Renderable node2("pyr2", &pyramid);
+	node2.setModelMatrix(glm::translate(glm::vec3(-3, 0, 0)));
 
 	Camera camera(window);
-	glm::mat4 modelMatrix = glm::mat4(1.0f);
 
 	double prevFrameTime = glfwGetTime();
 	double prevTimeFPS = prevFrameTime;
@@ -137,8 +130,8 @@ int main(int argc, char *argv[]) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// draw
-		node.draw(modelMatrix, camera.getViewMatrix());
-		node2.draw(modelMatrix, camera.getViewMatrix());
+		node.draw(camera.getViewMatrix());
+		node2.draw(camera.getViewMatrix());
 
 		// if esc key is pressed, close the window
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {

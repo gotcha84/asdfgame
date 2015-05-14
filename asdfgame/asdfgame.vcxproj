@@ -128,10 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AABB.cpp" />
-    <ClCompile Include="RenderableGO.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Named.cpp" />
+    <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -140,10 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AABB.h" />
-    <ClInclude Include="RenderableGO.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Named.h" />
+    <ClInclude Include="Renderable.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Constants.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="GameObjects.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
