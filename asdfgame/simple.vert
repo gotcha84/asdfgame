@@ -1,12 +1,15 @@
 #version 330 core
 
-// Input vertex data, different for all executions of this shader.
-layout(location = 0) in vec3 vertexPosition_modelspace;
+layout(location = 0) in vec3 vertex;
+layout(location = 1) in vec3 vertexColor;
 
 uniform mat4 mvpMatrix;
 
+out vec4 fragColor;
+
 void main() {
-	vec4 v = vec4(vertexPosition_modelspace, 1);
-	gl_Position = mvpMatrix * v;
+	gl_Position = mvpMatrix * vec4(vertex, 1);
+	//fragColor = vec4(clamp(vertex, 0.0, 1.0), 1.0);
+	fragColor = vec4(vertexColor, 1.0);
 }
 

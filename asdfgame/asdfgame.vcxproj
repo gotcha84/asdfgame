@@ -128,11 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AABB.cpp" />
-    <ClCompile Include="BasicGeode.cpp" />
+    <ClCompile Include="RenderableGO.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Geode.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,12 +140,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AABB.h" />
-    <ClInclude Include="BasicGeode.h" />
+    <ClInclude Include="RenderableGO.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Constants.h" />
-    <ClInclude Include="Geode.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="SceneGraph.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjects.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

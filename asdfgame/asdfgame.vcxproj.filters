@@ -16,10 +16,10 @@
     <Filter Include="Shader Files">
       <UniqueIdentifier>{b9164822-b131-45f8-8ac6-7c562331f586}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\SceneGraph">
+    <Filter Include="Header Files\GameObjects">
       <UniqueIdentifier>{975ec65e-a513-4c9c-9db7-33b2b44c3fd6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SceneGraph">
+    <Filter Include="Source Files\GameObjects">
       <UniqueIdentifier>{bf2d9a00-b01f-4e92-b1ec-e858b3367289}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -36,14 +36,11 @@
     <ClCompile Include="AABB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Geode.cpp">
-      <Filter>Source Files\SceneGraph</Filter>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Source Files\SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="BasicGeode.cpp">
-      <Filter>Source Files\SceneGraph</Filter>
+    <ClCompile Include="RenderableGO.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,17 +64,14 @@
     <ClInclude Include="AABB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Geode.h">
-      <Filter>Header Files\SceneGraph</Filter>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files\SceneGraph</Filter>
+    <ClInclude Include="GameObjects.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="SceneGraph.h">
-      <Filter>Header Files\SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicGeode.h">
-      <Filter>Header Files\SceneGraph</Filter>
+    <ClInclude Include="RenderableGO.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
